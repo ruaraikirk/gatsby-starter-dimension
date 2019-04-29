@@ -1,11 +1,44 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { navigate } from 'gatsby-link'
 
 import pic01 from '../images/pic01.jpg'
 import pic02 from '../images/pic02.jpg'
 import pic03 from '../images/pic03.jpg'
 
+
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+}
+
 class Main extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = { isValidated: false }
+  }
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    const form = e.target
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': form.getAttribute('name'),
+        ...this.state,
+      }),
+    })
+      .then(() => navigate(form.getAttribute('action')))
+      .catch(error => alert(error))
+  }
+
   render() {
 
     let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>
@@ -52,7 +85,66 @@ class Main extends React.Component {
 
         <article id="contact" className={`${this.props.article === 'contact' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Contact</h2>
-          {/*<form method="post" action="#">*/}
+          
+          <form
+                name="contact"
+                method="post"
+                //action="/contact/thanks/"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                onSubmit={this.handleSubmit}
+              >
+                {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+                <input type="hidden" name="form-name" value="contact" />
+                <div hidden>
+                  <label>
+                    Don’t fill this out:{' '}
+                    <input name="bot-field" onChange={this.handleChange} />
+                  </label>
+                </div>
+                <div className="field half first">
+                  <label className="label" htmlFor={'name'}>
+                    Your name
+                  </label>
+                  <input
+                      type={'text'}
+                      name={'name'}
+                      onChange={this.handleChange}
+                      id={'name'}
+                      required={true}
+                  />
+                </div>
+                <div className="field half">
+                  <label className="label" htmlFor={'email'}>
+                    Email
+                  </label>
+                  <input
+                      type={'email'}
+                      name={'email'}
+                      onChange={this.handleChange}
+                      id={'email'}
+                      required={true}
+                  />
+                </div>
+                <div className="field">
+                  <label className="label" htmlFor={'message'}>
+                    Message
+                  </label>
+                  <textarea
+                      name={'message'}
+                      onChange={this.handleChange}
+                      id={'message'}
+                      required={true}
+                  />
+                </div>
+                <ul className="actions">
+                  <li><input type="submit" value="Send Message" className="special" /></li>
+                  <li><input type="reset" value="Reset" /></li>
+                </ul>
+              </form>
+          
+          {/*
+          <form method="post" action="#">
           <form name="contact" method="POST" data-netlify="true">
             <div className="field half first">
               <label htmlFor="name">Name</label>
@@ -71,6 +163,7 @@ class Main extends React.Component {
               <li><input type="reset" value="Reset" /></li>
             </ul>
           </form>
+          */}
           {/* <ul className="icons">
             <li><a href="#" className="icon fa-twitter"><span className="label">Twitter</span></a></li>
             <li><a href="#" className="icon fa-facebook"><span className="label">Facebook</span></a></li>
