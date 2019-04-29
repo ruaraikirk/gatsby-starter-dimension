@@ -35,7 +35,7 @@ export default class Contact extends React.Component {
   render() {
     return (
       <div>
-        <h1>Contact</h1>
+        <h2 className="major">Contact</h2>
         <form
           name="contact"
           method="post"
@@ -52,27 +52,31 @@ export default class Contact extends React.Component {
               <input name="bot-field" onChange={this.handleChange} />
             </label>
           </p>
-          <p>
+          <p className="field half first">
             <label>
               Your name:<br />
               <input type="text" name="name" onChange={this.handleChange} />
             </label>
           </p>
-          <p>
+          <p className="field half">
             <label>
               Your email:<br />
               <input type="email" name="email" onChange={this.handleChange} />
             </label>
           </p>
-          <p>
+          <p className="field">
             <label>
               Message:<br />
               <textarea name="message" onChange={this.handleChange} />
             </label>
           </p>
-          <p>
+          <ul className="actions">
+            <li><input type="submit" value="Send Message" className="special" /></li>
+            <li><input type="reset" value="Reset" /></li>
+            </ul>
+          {/*<p>
             <button type="submit">Send</button>
-          </p>
+          </p>*/}
         </form>
       </div>
     );
