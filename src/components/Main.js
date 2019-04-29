@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Contact from './contact'
 
 import pic01 from '../images/pic01.jpg'
 import pic02 from '../images/pic02.jpg'
@@ -52,9 +53,10 @@ class Main extends React.Component {
         </article>
 
         <article id="contact" className={`${this.props.article === 'contact' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
+          <Contact />
+          {/*
           <h2 className="major">Contact</h2> 
           <form name="contact" method="POST" action="/page-2/" data-netlify="true">
-          {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
           <input type="hidden" name="form-name" value="contact" />
             <div className="field half first">
               <label htmlFor="name">Name</label>
@@ -73,6 +75,7 @@ class Main extends React.Component {
               <li><input type="reset" value="Reset" /></li>
             </ul>
           </form>
+          */}
           {/* <ul className="icons">
             <li><a href="#" className="icon fa-twitter"><span className="label">Twitter</span></a></li>
             <li><a href="#" className="icon fa-facebook"><span className="label">Facebook</span></a></li>
