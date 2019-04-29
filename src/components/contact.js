@@ -35,11 +35,11 @@ export default class Contact extends React.Component {
   render() {
     return (
       <div>
-        <h2 className="major">Contact</h2> 
+        <h1>Contact</h1>
         <form
           name="contact"
           method="post"
-          action="/page-2/"
+          action="/thanks/"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           onSubmit={this.handleSubmit}
@@ -52,28 +52,27 @@ export default class Contact extends React.Component {
               <input name="bot-field" onChange={this.handleChange} />
             </label>
           </p>
-          <div className="field half first">
+          <p>
             <label>
               Your name:<br />
               <input type="text" name="name" onChange={this.handleChange} />
             </label>
-          </div>
-          <div className="field half">
+          </p>
+          <p>
             <label>
               Your email:<br />
               <input type="email" name="email" onChange={this.handleChange} />
             </label>
-          </div>
-          <div className="field">
+          </p>
+          <p>
             <label>
               Message:<br />
               <textarea name="message" onChange={this.handleChange} />
             </label>
-          </div>
-          <ul className="actions">
-            <li><button type="submit" className="special" >Send</button></li>
-            <li><button type="reset" >Reset</button></li>
-          </ul>
+          </p>
+          <p>
+            <button type="submit">Send</button>
+          </p>
         </form>
       </div>
     );
