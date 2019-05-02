@@ -8,7 +8,7 @@ const Header = (props) => (
         </div>
         <div className="content">
             <div className="inner">
-                <h1>Crosskeys Healing Center</h1>
+                <h1>Crosskeys Healing Centre</h1>
                 <p>Specialists in Crystal Bed Light Terapy, Reflexology, Reiki and Integrated Energy Therapy (I.E.T.), situated in Tulligmore, Ballinhassig Co. Cork</p>
             </div>
         </div>
